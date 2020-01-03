@@ -2,9 +2,9 @@ const User = require('../models/User')
 
 class UserController {
   async list(req, res) {
-    const user = await User.findAll({ attributes: ['id', 'name', 'user_name'] })
+    const users = await User.findAll({ attributes: ['id', 'name', 'user_name'] })
 
-    return res.json(user)
+    return res.json(users)
   }
 
   async store(req, res) {
@@ -54,7 +54,11 @@ class UserController {
 
     const user = await User.findByPk(id)
 
-    res.json(user)
+    if (!user) {
+      return res.status(404).send()
+    }
+
+    return res.json(user)
   }
 
   async update(req, res) {
@@ -99,6 +103,10 @@ class UserController {
     const { id } = req.params
 
     const user = await User.findByPk(id)
+
+    if (!user) {
+      return res.status(404).send()
+    }
 
     user.destroy()
 

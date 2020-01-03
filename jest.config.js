@@ -6,7 +6,7 @@ module.exports = {
   // automock: false,
 
   // Stop running tests after `n` failures
-  bail: true,
+  bail: 0,
 
   // Respect "browser" field in package.json when resolving modules
   // browser: false,
@@ -15,7 +15,7 @@ module.exports = {
   // cacheDirectory: "C:\\Users\\vinic\\AppData\\Local\\Temp\\jest",
 
   // Automatically clear mock calls and instances between every test
-  clearMocks: true,
+  // clearMocks: false,
 
   // Indicates whether the coverage information should be collected while executing the test
   collectCoverage: true,
@@ -177,7 +177,7 @@ module.exports = {
   // unmockedModulePathPatterns: undefined,
 
   // Indicates whether each individual test should be reported during the run
-  // verbose: null,
+  // verbose: true,
 
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
   // watchPathIgnorePatterns: [],

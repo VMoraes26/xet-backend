@@ -1,4 +1,6 @@
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+
 
 const { Model, DataTypes } = require('sequelize')
 
@@ -20,6 +22,19 @@ class User extends Model {
       },
       sequelize,
     })
+  }
+
+  static associate(models) {
+    this.belongsToMany(models.User, { foreignKey: 'user_id', through: 'contacts', as: 'contact_owner' })
+    this.belongsToMany(models.User, { foreignKey: 'contact_id', through: 'contacts', as: 'talks' })
+  }
+
+  checkPassword(password) {
+    return bcrypt.compare(password, this.password_hash)
+  }
+
+  generateToken() {
+    return jwt.sign({ id: this.id }, process.env.APP_SECRET)
   }
 }
 
